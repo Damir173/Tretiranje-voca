@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Development/Android/Projects/LV2/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Development/Android/Projects/LV2/app/src/main/res/layout/fragment_new_task.xml" value="0.15" />
+        <entry key="..\:/Development/Android/Projects/LV2/app/src/main/res/layout/fragment_task_details.xml" value="0.25" />
+        <entry key="..\:/Development/Android/Projects/LV2/app/src/main/res/layout/fragment_task_list.xml" value="0.3423913043478261" />
+        <entry key="..\:/Development/Android/Projects/LV2/app/src/main/res/layout/item_task.xml" value="0.22" />
+        <entry key="..\:/Development/Android/RMA_Course/LV2/Taskie/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Development/Android/RMA_Course/LV2/Taskie/app/src/main/res/layout/fragment_new_task.xml" value="0.18802083333333333" />
+        <entry key="..\:/Development/Android/RMA_Course/LV2/Taskie/app/src/main/res/layout/fragment_task_details.xml" value="0.18802083333333333" />
+        <entry key="..\:/Development/Android/RMA_Course/LV2/Taskie/app/src/main/res/layout/fragment_task_list.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1835" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/drawable/bounce.xml" value="0.182" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1835" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/drawable/krug.xml" value="0.12" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/drawable/stroke.xml" value="0.182" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/activity_main.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_new_task.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_novo_tretiranje.xml" value="0.19375" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_task_details.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_task_list.xml" value="0.536" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_test.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_tretiranje_detalji.xml" value="0.17447916666666666" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_tretiranje_lista.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/item_task.xml" value="0.536" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/DBasic_TretiranjeVoca/app/src/main/res/layout/item_task2.xml" value="0.6" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/Taskie_LV3/app/src/main/res/layout/activity_main.xml" value="0.3482789855072464" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/Taskie_LV3/app/src/main/res/layout/fragment_new_task.xml" value="0.309375" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/Taskie_LV3/app/src/main/res/layout/fragment_task_details.xml" value="0.309375" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/Taskie_LV3/app/src/main/res/layout/fragment_task_list.xml" value="0.3482789855072464" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/Taskie_LV3/app/src/main/res/layout/fragment_test.xml" value="0.3482789855072464" />
+        <entry key="..\:/Users/Damir/Desktop/LV3/Taskie_LV3/app/src/main/res/layout/item_task.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Damir/Desktop/RMA Projekt/DBasic_TretiranjeVoca/app/src/main/res/layout/fragment_tretiranje_lista.xml" value="0.17447916666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

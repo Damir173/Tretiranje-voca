@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/TretiranjeListFragment">
+
+    <fragment
+        android:id="@+id/TretiranjeListFragment"
+        android:name="hr.ferit.tretiranjevoca.ui.tretiranje_lista.TretiranjeListFragment"
+        android:label="TaskListFragment"
+        tools:layout="@layout/fragment_tretiranje_lista">
+        <action
+            android:id="@+id/action_TestiranjeListFragment_to_TretiranjeDetaljiFragment"
+            app:destination="@id/TretiranjeDetaljiFragment" />
+        <action
+            android:id="@+id/action_TretiranjeListFragment_to_NovoTretiranjeFragment"
+            app:destination="@id/NovoTretiranjeFragment" />
+        <action
+            android:id="@+id/action_TretiranjeListFragment_to_noviActivity"
+            app:destination="@id/noviActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/TretiranjeDetaljiFragment"
+        android:name="hr.ferit.tretiranjevoca.ui.tretiranje_detalji.TretiranjeDetaljiFragment"
+        android:label="TaskDetailsFragment"
+        tools:layout="@layout/fragment_tretiranje_detalji">
+        <action
+            android:id="@+id/action_taskDetailsFragment_to_.TretiranjeListFragment"
+            app:destination="@id/TretiranjeListFragment" />
+        <argument
+            android:name="taskId"
+            app:argType="long"/>
+    </fragment>
+    <fragment
+        android:id="@+id/NovoTretiranjeFragment"
+        android:name="hr.ferit.tretiranjevoca.ui.tretiranje_novo.NovoTretiranjeFragment"
+        android:label="NewTaskFragment"
+        tools:layout="@layout/fragment_novo_tretiranje">
+        <action
+            android:id="@+id/action_newTaskFragment_to_taskListFragment"
+            app:destination="@id/TretiranjeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noviActivity"
+        android:name="hr.ferit.tretiranjevoca.ui.NoviActivity"
+        android:label="NoviActivity"
+        tools:layout="@layout/fragment_test">
+        <action
+            android:id="@+id/action_noviActivity_to_taskDetailsFragment2"
+            app:destination="@id/TretiranjeDetaljiFragment" />
+    </fragment>
+</navigation>

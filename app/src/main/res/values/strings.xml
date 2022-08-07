@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Damir</string>
+    <string name="message_saving">Saving task</string>
+    <string name="label_save_task">Save task</string>
+    <string name="hint_task_content_input">Enter task contents</string>
+    <string name="label_sljive">Sljive</string>
+    <string name="label_jabuke">Jabuke</string>
+    <string name="label_kruske">Kruske</string>
+    <string name="label_vinovaloza">Vinova loza</string>
+    <string name="label_herbicid">Herbicid</string>
+    <string name="label_fungicid">Fungicid</string>
+    <string name="label_insekticid">Insekticid</string>
+    <string name="label_vrsta">Vrsta, proizvodac</string>
+    <string name="label_kolicina">Kolicina [g / 100l]</string>
+    <string name="label_karenca">Karenca [dani]</string>
+    <string name="label_napomena">Kratka napomena</string>
+    <string name="label_statistika"><u>Ukupan broj tretiranja</u></string>
+    <string name="label_tretiranje_voca"><u><b>Tretiranje voća</b></u></string>
+    <string name="label_ukupno"><b>Ukupno:</b></string>
+    <string name="label_zadnjetretiranje"><b>Posljednje:</b></string>
+    <string name="label_aktivnekarence"><u>Karence</u></string>
+    <string name="label_brojaktivnih"><u></u></string>
+
+
+
+</resources>
