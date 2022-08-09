@@ -2,7 +2,6 @@
 import android.content.res.Resources
 import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.model.OdabirVoca
-import hr.ferit.tretiranjevoca.model.TaskPriority
 
 fun Resources.odabirSlikeVoca(tip: OdabirVoca): Int{
     return when(tip){

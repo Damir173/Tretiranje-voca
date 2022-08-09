@@ -9,7 +9,6 @@ interface TretiranjeRepository {
     fun delete(tretiranje: Tretiranje)
     fun getTaskById(id: Long): Tretiranje?
     fun getAllTasks(datum: Long): List<Tretiranje>
-  //  fun getNoviQuery(): List<Task>
     fun getNumber(): Int
 
     //region Dohvaćanje ukupnog broja tretiranja pojedinih kultura
@@ -25,5 +24,8 @@ interface TretiranjeRepository {
     fun getLastVinovaLoza(): Long
 
     fun getAktivneKarence(datum: Long): Int
+
+
+    fun getAllSljive():List<Tretiranje>
 }
 

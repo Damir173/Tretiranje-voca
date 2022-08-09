@@ -21,5 +21,5 @@ class TretiranjeRepositoryImpl(val tretiranjeDao: TretiranjeDao) : TretiranjeRep
 
     override fun getAktivneKarence(datum:Long): Int = tretiranjeDao.getAktivneKarence(datum)
 
-
+    override fun getAllSljive(): List<Tretiranje> = tretiranjeDao.getAllSljive()
 }

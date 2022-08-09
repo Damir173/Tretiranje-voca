@@ -63,8 +63,8 @@ interface TretiranjeDao {
 
     //endregion
 
-
-
+    @Query("SELECT * FROM tasks WHERE odabirvoca='Sljive'")
+    fun getAllSljive(): List<Tretiranje>
 
 }
 

@@ -20,7 +20,7 @@ class NoviActivity: Fragment(), OnTaskEventListener {
 
     private lateinit var binding: FragmentTestBinding
     private lateinit var adapter: TretiranjeAdapter
-    private val taskRepository = TretiranjeRepositoryFactory.tretiranjeRepository
+    private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
 
     override fun onCreateView(
 
@@ -54,7 +54,7 @@ class NoviActivity: Fragment(), OnTaskEventListener {
     }
 
     private fun updateData() {
-       // adapter.setTasks(taskRepository.getNoviQuery())
+        adapter.setTasks(tretiranjeRepository.getAllSljive())
     }
 
     companion object {
@@ -73,7 +73,7 @@ class NoviActivity: Fragment(), OnTaskEventListener {
 
     override fun onTaskLongPress(tretiranje: Tretiranje?): Boolean {
         tretiranje?.let { it ->
-            taskRepository.delete(it)
+            tretiranjeRepository.delete(it)
         //    adapter.setTasks(taskRepository.getNoviQuery())
         }
         return true

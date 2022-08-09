@@ -6,17 +6,71 @@
     android:layout_height="match_parent"
     android:background="#D6D5D5">
 
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/button_prijelaz" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/button_prijelaz" />
+
+    <Button
+        android:id="@+id/button_prijelaz4"
+        android:layout_width="76dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:text="KRUŠKE"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_prijelaz3"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <Button
+        android:id="@+id/button_prijelaz3"
+        android:layout_width="70dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="JABUKE"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_prijelaz4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_prijelaz2"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <Button
+        android:id="@+id/button_prijelaz2"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="VINOVA LOZA"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_prijelaz3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_prijelaz"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
     <TextView
         android:id="@+id/statistikatv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginStart="4dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/label_brojaktivnih"
         android:textColor="#000000"
-        android:textSize="28dp"
+        android:textSize="23dp"
         app:layout_constraintStart_toEndOf="@+id/statistikatv2"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -27,11 +81,10 @@
 
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="-15dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/label_aktivnekarence"
         android:textColor="#000000"
-        android:textSize="30dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -132,14 +185,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="15dp"
         android:fontFamily="sans-serif-light"
         android:text="@string/label_statistika"
         android:textColor="#000000"
-        android:textSize="30dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -176,13 +230,16 @@
 
     <Button
         android:id="@+id/button_prijelaz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Cibre"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fab_addNote" />
+        android:layout_width="60dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Šljive"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_prijelaz2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/textView"
@@ -295,17 +352,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="309dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/header" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
@@ -345,6 +391,19 @@
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/evidentiranje_tretiranja_vo_a"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

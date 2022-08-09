@@ -20,7 +20,7 @@
     <string name="label_zadnjetretiranje"><b>Posljednje:</b></string>
     <string name="label_aktivnekarence"><u>Karence</u></string>
     <string name="label_brojaktivnih"><u></u></string>
-
+    <string name="evidentiranje_tretiranja_vo_a"><b>Evidentiranje tretiranja voća</b></string>
 
 
 </resources>

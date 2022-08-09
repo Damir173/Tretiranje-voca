@@ -45,7 +45,7 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
         binding = FragmentTretiranjeListaBinding.inflate(layoutInflater)
         setupRecyclerView()
         binding.fabAddNote.setOnClickListener { showCreateNewTaskFragment() }
-     //  binding.buttonPrijelaz.setOnClickListener{showNoviFragment()}
+       binding.buttonPrijelaz.setOnClickListener{showNoviFragment()}
         binding.textView.text = tretiranjeRepository.getNumber().toString()
     //    binding.view.isClickable = false
 
@@ -72,7 +72,6 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
 
         binding.statistikatv.startAnimation(fadeIn)
      //   binding.view.startAnimation(anim2)
-        binding.imageView6.startAnimation(anim2)
         binding.rvTretiranje.startAnimation(anim2)
         binding.statistikatv2.startAnimation(anim2)
 
