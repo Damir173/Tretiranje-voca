@@ -19,7 +19,7 @@ class NoviActivity: Fragment(), OnTaskEventListener {
 
 
     private lateinit var binding: FragmentTestBinding
-    private lateinit var adapter: TretiranjeAdapter
+    private lateinit var adapter: TretiranjeAdapter2
     private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
 
     override fun onCreateView(
@@ -32,7 +32,6 @@ class NoviActivity: Fragment(), OnTaskEventListener {
         binding = FragmentTestBinding.inflate(layoutInflater)
         setupRecyclerView()
         updateData()
-
         return binding.root
     }
 
@@ -42,7 +41,7 @@ class NoviActivity: Fragment(), OnTaskEventListener {
             LinearLayoutManager.VERTICAL,
             false
         )
-        adapter = TretiranjeAdapter()
+        adapter = TretiranjeAdapter2()
         adapter.onTaskSelectedListener = this
         binding.testTaskovi.adapter = adapter
 

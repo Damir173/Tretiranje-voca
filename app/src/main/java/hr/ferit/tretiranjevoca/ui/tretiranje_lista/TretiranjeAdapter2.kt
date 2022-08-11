@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.TypeConverter
 import odabirSlikeVoca
 import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.model.Tretiranje
@@ -12,7 +11,7 @@ import hr.ferit.tretiranjevoca.databinding.ItemTretiranjeBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TretiranjeAdapter : RecyclerView.Adapter<TaskViewHolder>() {
+class TretiranjeAdapter2 : RecyclerView.Adapter<TaskViewHolder>() {
 
     private val tretiranjes = mutableListOf<Tretiranje>()
 
@@ -26,7 +25,7 @@ class TretiranjeAdapter : RecyclerView.Adapter<TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_tretiranje, parent, false)
+            .inflate(R.layout.item_det, parent, false)
         return TaskViewHolder(view)
     }
 
@@ -42,13 +41,13 @@ class TretiranjeAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     override fun getItemCount(): Int = tretiranjes.count()
 }
 
-class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TaskViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val dateDisplayFormat = SimpleDateFormat("dd.MM.yyyy")
 
     fun bind(tretiranje: Tretiranje) {
         val binding = ItemTretiranjeBinding.bind(itemView)
-      //  binding.itemTaskTitle.text = task.napomena
-       // binding.itemTaskContent.text = task.karenca.toString()
+        //  binding.itemTaskTitle.text = task.napomena
+        // binding.itemTaskContent.text = task.karenca.toString()
         //binding.itemTaskContent2.text = dateDisplayFormat.format(task.datumtretiranja)
         binding.imageView7.setBackgroundResource(
             binding.imageView7.context.resources.odabirSlikeVoca(tretiranje.odabirVoca)
@@ -57,19 +56,10 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         binding.textView20.text = dateDisplayFormat.format(fromTimestamp(toTimestamp(tretiranje.datumtretiranja)?.plus((tretiranje.karenca*86400000))))
 
         //val a = toTimestamp(task.datumtretiranja)?.plus((task.karenca*86400000))
-       // binding.itemTaskContent3.text = dateDisplayFormat.format(fromTimestamp(a))
+        // binding.itemTaskContent3.text = dateDisplayFormat.format(fromTimestamp(a))
 
 
 
     }
 }
 
-@TypeConverter
-fun fromTimestamp(value: Long?): Date? {
-    return value?.let { Date(it) }
-}
-
-@TypeConverter
-fun toTimestamp(date: Date?): Long? {
-    return date?.time
-}
