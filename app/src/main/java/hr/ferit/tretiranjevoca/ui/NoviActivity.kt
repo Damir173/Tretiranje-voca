@@ -30,6 +30,18 @@ class NoviActivity: Fragment(), OnTaskEventListener {
     ): View {
 
         binding = FragmentTestBinding.inflate(layoutInflater)
+        binding.tvUkupnoSljive.text = tretiranjeRepository.getSljive().toString()
+
+        if(tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).compareTo(0) == 0){
+            binding.tvAktivneSljive.text = "Nema"
+        }
+        else {
+            binding.tvAktivneSljive.text = tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString()
+        }
+        binding.tvFungicidSljive.text = tretiranjeRepository.getSljiveFungicid().toString()
+        binding.tvHerbicidSljive.text = tretiranjeRepository.getSljiveHerbicid().toString()
+        binding.tvInsekticidSljive.text = tretiranjeRepository.getSljiveInsekticid().toString()
+
         setupRecyclerView()
         updateData()
         return binding.root

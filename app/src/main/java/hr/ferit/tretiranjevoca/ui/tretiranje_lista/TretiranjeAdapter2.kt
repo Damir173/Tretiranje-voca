@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import odabirSlikeVoca
 import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.model.Tretiranje
-import hr.ferit.tretiranjevoca.databinding.ItemTretiranjeBinding
+import hr.ferit.tretiranjevoca.databinding.ItemDetBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TretiranjeAdapter2 : RecyclerView.Adapter<TaskViewHolder>() {
+class TretiranjeAdapter2 : RecyclerView.Adapter<TaskViewHolder2>() {
 
     private val tretiranjes = mutableListOf<Tretiranje>()
 
@@ -23,13 +23,13 @@ class TretiranjeAdapter2 : RecyclerView.Adapter<TaskViewHolder>() {
         this.notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder2 {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_det, parent, false)
-        return TaskViewHolder(view)
+        return TaskViewHolder2(view)
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TaskViewHolder2, position: Int) {
         val task = tretiranjes[position]
         holder.bind(task)
         onTaskSelectedListener?.let { listener ->
@@ -45,20 +45,12 @@ class TaskViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val dateDisplayFormat = SimpleDateFormat("dd.MM.yyyy")
 
     fun bind(tretiranje: Tretiranje) {
-        val binding = ItemTretiranjeBinding.bind(itemView)
-        //  binding.itemTaskTitle.text = task.napomena
-        // binding.itemTaskContent.text = task.karenca.toString()
-        //binding.itemTaskContent2.text = dateDisplayFormat.format(task.datumtretiranja)
-        binding.imageView7.setBackgroundResource(
-            binding.imageView7.context.resources.odabirSlikeVoca(tretiranje.odabirVoca)
-        )
-
-        binding.textView20.text = dateDisplayFormat.format(fromTimestamp(toTimestamp(tretiranje.datumtretiranja)?.plus((tretiranje.karenca*86400000))))
-
-        //val a = toTimestamp(task.datumtretiranja)?.plus((task.karenca*86400000))
-        // binding.itemTaskContent3.text = dateDisplayFormat.format(fromTimestamp(a))
-
-
+        val binding = ItemDetBinding.bind(itemView)
+        binding.tvItemDatum.text = dateDisplayFormat.format(tretiranje.datumtretiranja)
+        binding.tvItemKarenca.text = tretiranje.karenca.toString()
+        binding.tvItemKolicina.text = tretiranje.kolicina.toString()
+        binding.tvItemTip.text = tretiranje.vrsta.toString()
+        binding.tvItemVrsta.text = tretiranje.vrsta.toString()
 
     }
 }

@@ -14,16 +14,14 @@ interface TretiranjeDao {
     fun delete(tretiranje: Tretiranje)
 
     @Query("SELECT * FROM tasks WHERE id =:id")
-    fun getTaskById(id: Long): Tretiranje?
+    fun getTretId(id: Long): Tretiranje?
 
 
     @Query("SELECT * FROM tasks WHERE (datumtretiranja + (karenca*86400000) )>:datum")
-    fun getAllTasks(datum: Long): List<Tretiranje>
+    fun getAllTretiranja(datum: Long): List<Tretiranje>
 
 
 
-  //  @Query("SELECT * FROM tasks WHERE content='picka'")
-   // fun getNoviQuery(): List<Task>
 
 
     @Query("SELECT COUNT(id) from tasks")
@@ -45,8 +43,6 @@ interface TretiranjeDao {
 
     @Query("SELECT COUNT(id) from tasks WHERE (datumtretiranja + (karenca*86400000) )>:datum")
     fun getAktivneKarence(datum: Long): Int
-
-
     //endregion
 
 
@@ -66,5 +62,54 @@ interface TretiranjeDao {
     @Query("SELECT * FROM tasks WHERE odabirvoca='Sljive'")
     fun getAllSljive(): List<Tretiranje>
 
+    // region Dohvacanje broja aktivnih karenca pojedinih kultura
+
+    @Query("SELECT COUNT(id) from tasks WHERE (datumtretiranja + (karenca*86400000) )>:datum and odabirvoca = 'Sljive'" )
+    fun getAktivneSljive(datum: Long): Int
+    @Query("SELECT COUNT(id) from tasks WHERE (datumtretiranja + (karenca*86400000) )>:datum and odabirvoca = 'Jabuke'" )
+    fun getAktivneJabuke(datum: Long): Int
+    @Query("SELECT COUNT(id) from tasks WHERE (datumtretiranja + (karenca*86400000) )>:datum and odabirvoca = 'Kruske'" )
+    fun getAktivneKruske(datum: Long): Int
+    @Query("SELECT COUNT(id) from tasks WHERE (datumtretiranja + (karenca*86400000) )>:datum and odabirvoca = 'VinovaLoza'" )
+    fun getAktivneVinova(datum: Long): Int
+    //endregion
+
+
+    //region Dohvaćanje tretiranja fungicidom pojedinih kultura
+
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Sljive' AND  tiptretiranja='Fungicid' ")
+    fun getSljiveFungicid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Jabuke' AND  tiptretiranja='Fungicid' ")
+    fun getJabukeFungicid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Kruske' AND  tiptretiranja='Fungicid' ")
+    fun getKruskeFungicid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='VinovaLoza' AND  tiptretiranja='Fungicid' ")
+    fun getVinovaFungicid(): Int
+
+    //endregion
+    //region Dohvaćanje tretiranja herbicidom pojedinih kultura
+
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Sljive' AND  tiptretiranja='Herbicid' ")
+    fun getSljiveHerbicid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Jabuke' AND  tiptretiranja='Herbicid' ")
+    fun getJabukeHerbicid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Kruske' AND  tiptretiranja='Herbicid' ")
+    fun getKruskeHerbicid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='VinovaLoza' AND  tiptretiranja='Herbicid' ")
+    fun getVinovaHerbicid(): Int
+
+    //endregion
+    //region Dohvaćanje tretiranja insekticidom pojedinih kultura
+
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Sljive' AND  tiptretiranja='Insekticid' ")
+    fun getSljiveInsekticid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Jabuke' AND  tiptretiranja='Insekticid' ")
+    fun getJabukeInsekticid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='Kruske' AND  tiptretiranja='Insekticid' ")
+    fun getKruskeInsekticid(): Int
+    @Query("SELECT COUNT(id) from tasks WHERE odabirvoca='VinovaLoza' AND  tiptretiranja='Insekticid' ")
+    fun getVinovaInsekticid(): Int
+
+    //endregion
 }
 

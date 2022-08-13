@@ -5,8 +5,8 @@ import hr.ferit.tretiranjevoca.model.Tretiranje
 class TretiranjeRepositoryImpl(val tretiranjeDao: TretiranjeDao) : TretiranjeRepository {
     override fun save(tretiranje: Tretiranje) = tretiranjeDao.save(tretiranje)
     override fun delete(tretiranje: Tretiranje) = tretiranjeDao.delete(tretiranje)
-    override fun getTaskById(id: Long): Tretiranje? = tretiranjeDao.getTaskById(id)
-    override fun getAllTasks(datum:Long): List<Tretiranje> = tretiranjeDao.getAllTasks(datum)
+    override fun getTretId(id: Long): Tretiranje? = tretiranjeDao.getTretId(id)
+    override fun getAllTretiranja(datum:Long): List<Tretiranje> = tretiranjeDao.getAllTretiranja(datum)
    // override fun getNoviQuery(): List<Task> = taskDao.getNoviQuery()
     override fun getNumber(): Int = tretiranjeDao.getNumber()
     override fun getSljive(): Int = tretiranjeDao.getSljive()
@@ -22,4 +22,25 @@ class TretiranjeRepositoryImpl(val tretiranjeDao: TretiranjeDao) : TretiranjeRep
     override fun getAktivneKarence(datum:Long): Int = tretiranjeDao.getAktivneKarence(datum)
 
     override fun getAllSljive(): List<Tretiranje> = tretiranjeDao.getAllSljive()
+
+    override fun getAktivneJabuke(datum:Long): Int = tretiranjeDao.getAktivneJabuke(datum)
+    override fun getAktivneSljive(datum:Long): Int = tretiranjeDao.getAktivneSljive(datum)
+    override fun getAktivneKruske(datum:Long): Int = tretiranjeDao.getAktivneKruske(datum)
+    override fun getAktivneVinova(datum:Long): Int = tretiranjeDao.getAktivneVinova(datum)
+
+    override fun getJabukeFungicid(): Int = tretiranjeDao.getJabukeFungicid()
+    override fun getKruskeFungicid(): Int = tretiranjeDao.getKruskeFungicid()
+    override fun getSljiveFungicid(): Int = tretiranjeDao.getSljiveFungicid()
+    override fun getVinovaFungicid(): Int = tretiranjeDao.getVinovaFungicid()
+
+    override fun getJabukeHerbicid(): Int = tretiranjeDao.getJabukeHerbicid()
+    override fun getKruskeHerbicid(): Int = tretiranjeDao.getKruskeHerbicid()
+    override fun getSljiveHerbicid(): Int = tretiranjeDao.getSljiveHerbicid()
+    override fun getVinovaHerbicid(): Int = tretiranjeDao.getVinovaHerbicid()
+
+    override fun getJabukeInsekticid(): Int = tretiranjeDao.getJabukeInsekticid()
+    override fun getKruskeInsekticid(): Int = tretiranjeDao.getKruskeInsekticid()
+    override fun getSljiveInsekticid(): Int = tretiranjeDao.getSljiveInsekticid()
+    override fun getVinovaInsekticid(): Int = tretiranjeDao.getVinovaInsekticid()
+
 }

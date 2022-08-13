@@ -29,7 +29,7 @@ class TretiranjeDetaljiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task = taskRepository.getTaskById(args.taskId)
+        val task = taskRepository.getTretId(args.taskId)
         display(task)
     }
 

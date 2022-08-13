@@ -21,6 +21,19 @@
     <string name="label_aktivnekarence"><u>Karence</u></string>
     <string name="label_brojaktivnih"><u></u></string>
     <string name="evidentiranje_tretiranja_vo_a"><b>Evidentiranje tretiranja voća</b></string>
+    <string name="label_statistikakulture">Statistika o kulturi </string>
+    <string name="label_statistikasljive">Š L J I V E  </string>
+
+    <string name="label_ukupnotretiranja"><b>Ukupno tretiranja:</b></string>
+    <string name="label_fungicidom"><b>Fungicid:</b></string>
+    <string name="label_herbicidom"><b>Herbicid:</b></string>
+    <string name="label_aktivnekarencep"><b>Aktivne karence:</b></string>
+    <string name="label_insekticidom"><b>Insekticid:</b></string>
+    <string name="label_DetDatumtretiranja"><b>Datum tretiranja:</b></string>
+    <string name="label_DetVrstaTretiranja"><b>Vrsta tretiranja:</b></string>
+    <string name="label_DetTipProizvodac"><b>Tip, proizvođač:</b></string>
+    <string name="label_DetKolicina"><b>Količina [g/100l]:</b></string>
+    <string name="label_DetKarenca"><b>Karenca [dani]:</b></string>
 
 
 </resources>

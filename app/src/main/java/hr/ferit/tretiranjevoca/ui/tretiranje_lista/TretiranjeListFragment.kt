@@ -131,7 +131,7 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
     }
 
     private fun updateData() {
-        adapter.setTasks(tretiranjeRepository.getAllTasks(System.currentTimeMillis()))
+        adapter.setTasks(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
     }
 
 
@@ -153,7 +153,7 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
     override fun onTaskLongPress(tretiranje: Tretiranje?): Boolean {
         tretiranje?.let { it ->
             tretiranjeRepository.delete(it)
-            adapter.setTasks(tretiranjeRepository.getAllTasks(System.currentTimeMillis()))
+            adapter.setTasks(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
         }
         return true
     }
