@@ -48,6 +48,7 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         binding.buttonPrijelaz.setOnClickListener{showSljiveFragment()}
         binding.buttonPrijelaz2.setOnClickListener{showVLFragment()}
         binding.buttonPrijelaz3.setOnClickListener {showJabukeFragment()}
+        binding.buttonPrijelaz4.setOnClickListener { showKruskeFragment() }
         binding.textView.text = tretiranjeRepository.getNumber().toString()
     //    binding.view.isClickable = false
 
@@ -176,6 +177,11 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
     private fun showJabukeFragment() {
         val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToJabukeActivity()
+        findNavController().navigate(action)
+    }
+
+    private fun showKruskeFragment() {
+        val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToKruskeActivity()
         findNavController().navigate(action)
     }
 

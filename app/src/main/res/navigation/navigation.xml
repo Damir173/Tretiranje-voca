@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_TretiranjeListFragment_to_jabukeActivity"
             app:destination="@id/jabukeActivity" />
+        <action
+            android:id="@+id/action_TretiranjeListFragment_to_kruskeActivity"
+            app:destination="@id/kruskeActivity" />
     </fragment>
     <fragment
         android:id="@+id/TretiranjeDetaljiFragment"
@@ -70,6 +73,14 @@
         android:label="JabukeActivity" >
         <action
             android:id="@+id/action_jabukeActivity_to_TretiranjeDetaljiFragment"
+            app:destination="@id/TretiranjeDetaljiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kruskeActivity"
+        android:name="hr.ferit.tretiranjevoca.ui.KruskeActivity"
+        android:label="KruskeActivity" >
+        <action
+            android:id="@+id/action_kruskeActivity_to_TretiranjeDetaljiFragment"
             app:destination="@id/TretiranjeDetaljiFragment" />
     </fragment>
 </navigation>
