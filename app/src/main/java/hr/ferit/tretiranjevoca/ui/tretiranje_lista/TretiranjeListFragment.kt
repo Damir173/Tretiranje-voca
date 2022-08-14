@@ -45,8 +45,9 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         binding = FragmentTretiranjeListaBinding.inflate(layoutInflater)
         setupRecyclerView()
         binding.fabAddNote.setOnClickListener { showCreateNewTretFragment() }
-       binding.buttonPrijelaz.setOnClickListener{showSljiveFragment()}
+        binding.buttonPrijelaz.setOnClickListener{showSljiveFragment()}
         binding.buttonPrijelaz2.setOnClickListener{showVLFragment()}
+        binding.buttonPrijelaz3.setOnClickListener {showJabukeFragment()}
         binding.textView.text = tretiranjeRepository.getNumber().toString()
     //    binding.view.isClickable = false
 
@@ -172,6 +173,12 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToVLActivity()
         findNavController().navigate(action)
     }
+
+    private fun showJabukeFragment() {
+        val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToJabukeActivity()
+        findNavController().navigate(action)
+    }
+
 
     fun toTimestamp(date: Date?): Long? {
         return date?.time

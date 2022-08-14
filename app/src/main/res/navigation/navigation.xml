@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_TretiranjeListFragment_to_VLActivity"
             app:destination="@id/VLActivity" />
+        <action
+            android:id="@+id/action_TretiranjeListFragment_to_jabukeActivity"
+            app:destination="@id/jabukeActivity" />
     </fragment>
     <fragment
         android:id="@+id/TretiranjeDetaljiFragment"
@@ -59,6 +62,14 @@
         android:label="VLActivity" >
         <action
             android:id="@+id/action_VLActivity_to_TretiranjeDetaljiFragment"
+            app:destination="@id/TretiranjeDetaljiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jabukeActivity"
+        android:name="hr.ferit.tretiranjevoca.ui.JabukeActivity"
+        android:label="JabukeActivity" >
+        <action
+            android:id="@+id/action_jabukeActivity_to_TretiranjeDetaljiFragment"
             app:destination="@id/TretiranjeDetaljiFragment" />
     </fragment>
 </navigation>
