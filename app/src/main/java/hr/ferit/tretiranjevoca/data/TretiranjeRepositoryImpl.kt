@@ -21,9 +21,13 @@ class TretiranjeRepositoryImpl(val tretiranjeDao: TretiranjeDao) : TretiranjeRep
 
     override fun getAktivneKarence(datum:Long): Int = tretiranjeDao.getAktivneKarence(datum)
 
-    override fun getAllSljive(): List<Tretiranje> = tretiranjeDao.getAllSljive()
+  override fun getAllSljive(): List<Tretiranje> = tretiranjeDao.getAllSljive()
+  override fun getAllJabuke(): List<Tretiranje> = tretiranjeDao.getAllJabuke()
+  override fun getAllVinova(): List<Tretiranje> = tretiranjeDao.getAllVinova()
+  override fun getAllKruske(): List<Tretiranje> = tretiranjeDao.getAllKruske()
 
-    override fun getAktivneJabuke(datum:Long): Int = tretiranjeDao.getAktivneJabuke(datum)
+
+ override fun getAktivneJabuke(datum:Long): Int = tretiranjeDao.getAktivneJabuke(datum)
     override fun getAktivneSljive(datum:Long): Int = tretiranjeDao.getAktivneSljive(datum)
     override fun getAktivneKruske(datum:Long): Int = tretiranjeDao.getAktivneKruske(datum)
     override fun getAktivneVinova(datum:Long): Int = tretiranjeDao.getAktivneVinova(datum)

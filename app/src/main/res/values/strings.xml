@@ -23,6 +23,8 @@
     <string name="evidentiranje_tretiranja_vo_a"><b>Evidentiranje tretiranja voća</b></string>
     <string name="label_statistikakulture">Statistika o kulturi </string>
     <string name="label_statistikasljive">Š L J I V E  </string>
+    <string name="label_statistikavinova">V I N O V A  \t\tL O Z A  </string>
+
 
     <string name="label_ukupnotretiranja"><b>Ukupno tretiranja:</b></string>
     <string name="label_fungicidom"><b>Fungicid:</b></string>

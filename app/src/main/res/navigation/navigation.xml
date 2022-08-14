@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_TretiranjeListFragment_to_SljiveActivity"
             app:destination="@id/SljiveActivity" />
+        <action
+            android:id="@+id/action_TretiranjeListFragment_to_VLActivity"
+            app:destination="@id/VLActivity" />
     </fragment>
     <fragment
         android:id="@+id/TretiranjeDetaljiFragment"
@@ -48,6 +51,14 @@
         tools:layout="@layout/fragment_sljive">
         <action
             android:id="@+id/action_SljiveActivity_to_tretiranjeDetails"
+            app:destination="@id/TretiranjeDetaljiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/VLActivity"
+        android:name="hr.ferit.tretiranjevoca.ui.VLActivity"
+        android:label="VLActivity" >
+        <action
+            android:id="@+id/action_VLActivity_to_TretiranjeDetaljiFragment"
             app:destination="@id/TretiranjeDetaljiFragment" />
     </fragment>
 </navigation>

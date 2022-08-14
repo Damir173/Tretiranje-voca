@@ -25,6 +25,10 @@ interface TretiranjeRepository {
 
 
     fun getAllSljive():List<Tretiranje>
+    fun getAllJabuke():List<Tretiranje>
+    fun getAllVinova():List<Tretiranje>
+    fun getAllKruske():List<Tretiranje>
+
 
     fun getAktivneSljive(datum: Long): Int
     fun getAktivneKruske(datum: Long): Int

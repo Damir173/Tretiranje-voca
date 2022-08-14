@@ -61,6 +61,13 @@ interface TretiranjeDao {
 
     @Query("SELECT * FROM tasks WHERE odabirvoca='Sljive'")
     fun getAllSljive(): List<Tretiranje>
+    @Query("SELECT * FROM tasks WHERE odabirvoca='VinovaLoza'")
+    fun getAllVinova(): List<Tretiranje>
+    @Query("SELECT * FROM tasks WHERE odabirvoca='Jabuke'")
+    fun getAllJabuke(): List<Tretiranje>
+    @Query("SELECT * FROM tasks WHERE odabirvoca='Kruske'")
+    fun getAllKruske(): List<Tretiranje>
+
 
     // region Dohvacanje broja aktivnih karenca pojedinih kultura
 

@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sljive" />
+        app:srcCompat="@drawable/grapes" />
     <View
         android:id="@+id/view6"
         android:layout_width="match_parent"
@@ -35,8 +35,8 @@
         android:layout_height="90dp"
         android:layout_marginStart="-5dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="-5dp"
         android:alpha="0.85"
+        android:layout_marginEnd="-5dp"
         android:background="@drawable/stroke"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +57,9 @@
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_statistikasljive"
+        android:text="@string/label_statistikavinova"
         android:textColor="@color/black"
-        android:textSize="30dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="@+id/view">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_sljive"
+            android:id="@+id/rv_vinova"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginStart="8dp"
