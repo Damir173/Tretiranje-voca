@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class TretiranjeListFragment : Fragment(), OnTaskEventListener {
+class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
     private lateinit var binding: FragmentTretiranjeListaBinding
     private val dateDisplayFormat = SimpleDateFormat("dd.MM.YYYY")
@@ -44,7 +44,7 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
 
         binding = FragmentTretiranjeListaBinding.inflate(layoutInflater)
         setupRecyclerView()
-        binding.fabAddNote.setOnClickListener { showCreateNewTaskFragment() }
+        binding.fabAddNote.setOnClickListener { showCreateNewTretFragment() }
        binding.buttonPrijelaz.setOnClickListener{showNoviFragment()}
         binding.textView.text = tretiranjeRepository.getNumber().toString()
     //    binding.view.isClickable = false
@@ -119,7 +119,7 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
             false
         )
         adapter = TretiranjeAdapter()
-        adapter.onTaskSelectedListener = this
+        adapter.onTretiranjeSelectedListener = this
         binding.rvTretiranje.adapter = adapter
 
 
@@ -131,40 +131,39 @@ class TretiranjeListFragment : Fragment(), OnTaskEventListener {
     }
 
     private fun updateData() {
-        adapter.setTasks(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+        adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
     }
 
 
 
     companion object {
-        val Tag = "TasksList"
 
         fun create(): Fragment {
             return TretiranjeListFragment()
         }
     }
 
-    override fun onTaskSelected(id: Long?) {
+    override fun onItemSelected(id: Long?) {
         val action =
             TretiranjeListFragmentDirections.actionTestiranjeListFragmentToTretiranjeDetaljiFragment(id ?: -1)
         findNavController().navigate(action)
     }
 
-    override fun onTaskLongPress(tretiranje: Tretiranje?): Boolean {
+    override fun onItemPress(tretiranje: Tretiranje?): Boolean {
         tretiranje?.let { it ->
             tretiranjeRepository.delete(it)
-            adapter.setTasks(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+            adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
         }
         return true
     }
 
-    private fun showCreateNewTaskFragment() {
+    private fun showCreateNewTretFragment() {
         val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToNovoTretiranjeFragment()
         findNavController().navigate(action)
     }
 
     private fun showNoviFragment() {
-        val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToNoviActivity()
+        val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToSljiveActivity()
         findNavController().navigate(action)
     }
 

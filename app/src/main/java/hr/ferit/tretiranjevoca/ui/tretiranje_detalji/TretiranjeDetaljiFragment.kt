@@ -15,7 +15,7 @@ class TretiranjeDetaljiFragment : Fragment() {
 
     private val dateDisplayFormat = SimpleDateFormat("yyyy-MM-dd")
     private lateinit var binding: FragmentTretiranjeDetaljiBinding
-    private val taskRepository = TretiranjeRepositoryFactory.tretiranjeRepository
+    private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
     private val args: TretiranjeDetaljiFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -29,17 +29,14 @@ class TretiranjeDetaljiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val task = taskRepository.getTretId(args.taskId)
-        display(task)
+        val tretiranje = tretiranjeRepository.getTretId(args.taskId)
+        display(tretiranje)
     }
 
     private fun display(tretiranje: Tretiranje?) {
         tretiranje?.let {
             binding.apply {
-        //        tvTaskDateAdded.text = dateDisplayFormat.format(it.dateAdded)
-         //       clTaskDetailsRoot.setBackgroundResource(resources.getColorResource(task.priority))
-        //        tvTaskDetailsTitle.text = task.title
-         //       tvTaskDetailsContents.text = task.content
+
             }
         }
     }

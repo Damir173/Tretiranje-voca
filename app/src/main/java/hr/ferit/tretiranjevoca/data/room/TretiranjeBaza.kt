@@ -17,7 +17,7 @@ import hr.ferit.tretiranjevoca.model.Tretiranje
 @TypeConverters(TretiranjeConverteri::class)
 abstract class TretiranjeBaza : RoomDatabase() {
 
-    abstract fun getTaskDao(): TretiranjeDao
+    abstract fun getTretiranjeDao(): TretiranjeDao
 
     companion object {
 

@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import hr.ferit.tretiranjevoca.databinding.FragmentTestBinding
+import hr.ferit.tretiranjevoca.databinding.FragmentSljiveBinding
 
 import hr.ferit.tretiranjevoca.di.TretiranjeRepositoryFactory
 import hr.ferit.tretiranjevoca.model.Tretiranje
 import hr.ferit.tretiranjevoca.ui.tretiranje_lista.*
 
-class NoviActivity: Fragment(), OnTaskEventListener {
+class SljiveActivity: Fragment(), OnTretiranjeEventListener {
 
 
 
 
-    private lateinit var binding: FragmentTestBinding
+    private lateinit var binding: FragmentSljiveBinding
     private lateinit var adapter: TretiranjeAdapter2
     private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
 
@@ -29,7 +29,7 @@ class NoviActivity: Fragment(), OnTaskEventListener {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentTestBinding.inflate(layoutInflater)
+        binding = FragmentSljiveBinding.inflate(layoutInflater)
         binding.tvUkupnoSljive.text = tretiranjeRepository.getSljive().toString()
 
         if(tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).compareTo(0) == 0){
@@ -48,14 +48,14 @@ class NoviActivity: Fragment(), OnTaskEventListener {
     }
 
     private fun setupRecyclerView() {
-        binding.testTaskovi.layoutManager = LinearLayoutManager(
+        binding.rvSljive.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.VERTICAL,
             false
         )
         adapter = TretiranjeAdapter2()
-        adapter.onTaskSelectedListener = this
-        binding.testTaskovi.adapter = adapter
+        adapter.onTretiranjaSelectedListener = this
+        binding.rvSljive.adapter = adapter
 
     }
 
@@ -65,27 +65,26 @@ class NoviActivity: Fragment(), OnTaskEventListener {
     }
 
     private fun updateData() {
-        adapter.setTasks(tretiranjeRepository.getAllSljive())
+        adapter.setTretiranja(tretiranjeRepository.getAllSljive())
     }
 
     companion object {
         val Tag = "TasksList"
 
         fun create(): Fragment {
-            return NoviActivity()
+            return SljiveActivity()
         }
     }
 
-    override fun onTaskSelected(id: Long?) {
+    override fun onItemSelected(id: Long?) {
 
-        val action = NoviActivityDirections.actionNoviActivityToTaskDetailsFragment2(id ?: -1)
+        val action = SljiveActivityDirections.actionSljiveActivityToTretiranjeDetails(id ?: -1)
         findNavController().navigate(action)
     }
 
-    override fun onTaskLongPress(tretiranje: Tretiranje?): Boolean {
+    override fun onItemPress(tretiranje: Tretiranje?): Boolean {
         tretiranje?.let { it ->
             tretiranjeRepository.delete(it)
-        //    adapter.setTasks(taskRepository.getNoviQuery())
         }
         return true
     }

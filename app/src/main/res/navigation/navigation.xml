@@ -17,8 +17,8 @@
             android:id="@+id/action_TretiranjeListFragment_to_NovoTretiranjeFragment"
             app:destination="@id/NovoTretiranjeFragment" />
         <action
-            android:id="@+id/action_TretiranjeListFragment_to_noviActivity"
-            app:destination="@id/noviActivity" />
+            android:id="@+id/action_TretiranjeListFragment_to_SljiveActivity"
+            app:destination="@id/SljiveActivity" />
     </fragment>
     <fragment
         android:id="@+id/TretiranjeDetaljiFragment"
@@ -38,16 +38,16 @@
         android:label="NewTaskFragment"
         tools:layout="@layout/fragment_novo_tretiranje">
         <action
-            android:id="@+id/action_newTaskFragment_to_taskListFragment"
+            android:id="@+id/action_novoTretiranjeFragment_to_tretiranjeLista"
             app:destination="@id/TretiranjeListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/noviActivity"
-        android:name="hr.ferit.tretiranjevoca.ui.NoviActivity"
-        android:label="NoviActivity"
-        tools:layout="@layout/fragment_test">
+        android:id="@+id/SljiveActivity"
+        android:name="hr.ferit.tretiranjevoca.ui.SljiveActivity"
+        android:label="SljiveActivity"
+        tools:layout="@layout/fragment_sljive">
         <action
-            android:id="@+id/action_noviActivity_to_taskDetailsFragment2"
+            android:id="@+id/action_SljiveActivity_to_tretiranjeDetails"
             app:destination="@id/TretiranjeDetaljiFragment" />
     </fragment>
 </navigation>

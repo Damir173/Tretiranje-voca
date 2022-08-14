@@ -12,37 +12,37 @@ import hr.ferit.tretiranjevoca.databinding.ItemTretiranjeBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TretiranjeAdapter : RecyclerView.Adapter<TaskViewHolder>() {
+class TretiranjeAdapter : RecyclerView.Adapter<TretiranjeViewHolder>() {
 
     private val tretiranjes = mutableListOf<Tretiranje>()
 
-    var onTaskSelectedListener: OnTaskEventListener? = null
+    var onTretiranjeSelectedListener: OnTretiranjeEventListener? = null
 
-    fun setTasks(tretiranjes: List<Tretiranje>) {
+    fun setTretiranja(tretiranjes: List<Tretiranje>) {
         this.tretiranjes.clear()
         this.tretiranjes.addAll(tretiranjes)
         this.notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TretiranjeViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_tretiranje, parent, false)
-        return TaskViewHolder(view)
+        return TretiranjeViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task = tretiranjes[position]
-        holder.bind(task)
-        onTaskSelectedListener?.let { listener ->
-            holder.itemView.setOnClickListener { listener.onTaskSelected(task.id) }
-            holder.itemView.setOnLongClickListener { listener.onTaskLongPress(task) }
+    override fun onBindViewHolder(holder: TretiranjeViewHolder, position: Int) {
+        val tret = tretiranjes[position]
+        holder.bind(tret)
+        onTretiranjeSelectedListener?.let { listener ->
+            holder.itemView.setOnClickListener { listener.onItemSelected(tret.id) }
+            holder.itemView.setOnLongClickListener { listener.onItemPress(tret) }
         }
     }
 
     override fun getItemCount(): Int = tretiranjes.count()
 }
 
-class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TretiranjeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val dateDisplayFormat = SimpleDateFormat("dd.MM.yyyy")
 
     fun bind(tretiranje: Tretiranje) {

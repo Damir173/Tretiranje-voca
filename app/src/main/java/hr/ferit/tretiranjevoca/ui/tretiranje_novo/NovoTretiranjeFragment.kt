@@ -18,7 +18,7 @@ import java.util.*
 
 class NovoTretiranjeFragment : Fragment() {
 
-    private val taskRepository = TretiranjeRepositoryFactory.tretiranjeRepository
+    private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
     lateinit var binding: FragmentNovoTretiranjeBinding
 
 
@@ -37,7 +37,7 @@ class NovoTretiranjeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNovoTretiranjeBinding.inflate(layoutInflater)
-        binding.bSaveTask.setOnClickListener{saveTask()}
+        binding.bSaveTret.setOnClickListener{saveTretiranje()}
 
         binding.etKolicina2.setOnClickListener {
             DatePickerDialog(requireContext(), 0, (DatePickerDialog.OnDateSetListener {
@@ -70,7 +70,7 @@ class NovoTretiranjeFragment : Fragment() {
 
 
 
-    private fun saveTask() {
+    private fun saveTretiranje() {
 
         val odabirVoca = when(binding.rgOdabirvoca.checkedRadioButtonId){
             R.id.rb_sljive -> OdabirVoca.Sljive
@@ -98,11 +98,11 @@ class NovoTretiranjeFragment : Fragment() {
 
 
 
-        taskRepository.save(Tretiranje(0,odabirVoca,tipTretiranja,vrsta,kolicina2,datumtretiranja,karenca2, kratkanapomena) )
+        tretiranjeRepository.save(Tretiranje(0,odabirVoca,tipTretiranja,vrsta,kolicina2,datumtretiranja,karenca2, kratkanapomena) )
 
 
         Toast.makeText(context, getString(R.string.message_saving), Toast.LENGTH_SHORT).show()
-        val action = NovoTretiranjeFragmentDirections.actionNewTaskFragmentToTaskListFragment()
+        val action = NovoTretiranjeFragmentDirections.actionNovoTretiranjeFragmentToTretiranjeLista()
         findNavController().navigate(action)
 
 
@@ -111,7 +111,6 @@ class NovoTretiranjeFragment : Fragment() {
 
 
     companion object {
-        val Tag = "NewTask"
 
         fun create(): Fragment {
             return NovoTretiranjeFragment()

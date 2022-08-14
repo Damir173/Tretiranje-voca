@@ -8,5 +8,5 @@ import hr.ferit.tretiranjevoca.data.room.TretiranjeBaza
 object TretiranjeRepositoryFactory {
 
     val roomDb = TretiranjeBaza.getDatabase(TretiranjeVoca.application)
-    val tretiranjeRepository: TretiranjeRepository = TretiranjeRepositoryImpl(roomDb.getTaskDao())
+    val tretiranjeRepository: TretiranjeRepository = TretiranjeRepositoryImpl(roomDb.getTretiranjeDao())
 }

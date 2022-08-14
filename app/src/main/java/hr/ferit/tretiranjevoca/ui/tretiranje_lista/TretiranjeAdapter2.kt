@@ -4,44 +4,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import odabirSlikeVoca
 import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.model.Tretiranje
 import hr.ferit.tretiranjevoca.databinding.ItemDetBinding
 import java.text.SimpleDateFormat
-import java.util.*
 
-class TretiranjeAdapter2 : RecyclerView.Adapter<TaskViewHolder2>() {
+class TretiranjeAdapter2 : RecyclerView.Adapter<TretiranjeViewHolder2>() {
 
     private val tretiranjes = mutableListOf<Tretiranje>()
 
-    var onTaskSelectedListener: OnTaskEventListener? = null
+    var onTretiranjaSelectedListener: OnTretiranjeEventListener? = null
 
-    fun setTasks(tretiranjes: List<Tretiranje>) {
+    fun setTretiranja(tretiranjes: List<Tretiranje>) {
         this.tretiranjes.clear()
         this.tretiranjes.addAll(tretiranjes)
         this.notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder2 {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TretiranjeViewHolder2 {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_det, parent, false)
-        return TaskViewHolder2(view)
+        return TretiranjeViewHolder2(view)
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder2, position: Int) {
-        val task = tretiranjes[position]
-        holder.bind(task)
-        onTaskSelectedListener?.let { listener ->
-            holder.itemView.setOnClickListener { listener.onTaskSelected(task.id) }
-            holder.itemView.setOnLongClickListener { listener.onTaskLongPress(task) }
+    override fun onBindViewHolder(holder: TretiranjeViewHolder2, position: Int) {
+        val tretiranje = tretiranjes[position]
+        holder.bind(tretiranje)
+        onTretiranjaSelectedListener?.let { listener ->
+            holder.itemView.setOnClickListener { listener.onItemSelected(tretiranje.id) }
+            holder.itemView.setOnLongClickListener { listener.onItemPress(tretiranje) }
         }
     }
 
     override fun getItemCount(): Int = tretiranjes.count()
 }
 
-class TaskViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TretiranjeViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val dateDisplayFormat = SimpleDateFormat("dd.MM.yyyy")
 
     fun bind(tretiranje: Tretiranje) {
