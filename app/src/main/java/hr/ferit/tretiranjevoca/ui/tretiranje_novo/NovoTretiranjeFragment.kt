@@ -27,9 +27,11 @@ class NovoTretiranjeFragment : Fragment() {
     val mMonth = c.get(Calendar.MONTH)
     val mDay = c.get(Calendar.DAY_OF_MONTH)
 
-    var a: Int = 1
-    var b: Int = 1
-    var e: Int = 1
+    var a: Int = c.get(Calendar.YEAR)
+    var b: Int = c.get(Calendar.MONTH)
+    var e: Int = c.get(Calendar.DAY_OF_MONTH)
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,12 +44,18 @@ class NovoTretiranjeFragment : Fragment() {
         binding.etKolicina2.setOnClickListener {
             DatePickerDialog(requireContext(), 0, (DatePickerDialog.OnDateSetListener {
                     datePicker, i, i2, i3 -> pickTime1(i,i2,i3)
-              a = i
+                a = i
                 b = i2
                 e = i3
             }
                     ), mYear, mMonth, mDay).show()
         }
+
+        var nula:String = "0"
+        binding.etKarenca.setText(nula)
+
+        binding.rgOdabirvoca.check(R.id.rb_sljive)
+        binding.rgTiptretiranja.check(R.id.rb_herbicid)
 
         return binding.root
     }
@@ -55,13 +63,8 @@ class NovoTretiranjeFragment : Fragment() {
 
     private fun pickTime1(y: Int,m: Int,d: Int): Date{
 
-
-      //  val date_selected: String = ((m + 1).toString() + "/" + d + "/" + y)
-  //  binding.etKolicina2.setText(date_selected)
-
         val cc = Calendar.getInstance()
           cc.set(y, m, d)
-
         binding.etKolicina2.setText(
             StringBuilder().append(d).append("/").append(m + 1).append("/").append(y))
 
@@ -72,7 +75,10 @@ class NovoTretiranjeFragment : Fragment() {
 
     private fun saveTretiranje() {
 
-        val odabirVoca = when(binding.rgOdabirvoca.checkedRadioButtonId){
+
+
+        var greske = arrayOf<String>()
+        val odabirVoca = when (binding.rgOdabirvoca.checkedRadioButtonId) {
             R.id.rb_sljive -> OdabirVoca.Sljive
             R.id.rb_jabuke -> OdabirVoca.Jabuke
             R.id.rb_kruske -> OdabirVoca.Kruske
@@ -80,33 +86,85 @@ class NovoTretiranjeFragment : Fragment() {
             else -> OdabirVoca.Sljive
         }
 
-        val tipTretiranja = when(binding.rgTiptretiranja.checkedRadioButtonId){
+        val tipTretiranja = when (binding.rgTiptretiranja.checkedRadioButtonId) {
             R.id.rb_herbicid -> TipTretiranja.Herbicid
             R.id.rb_fungicid -> TipTretiranja.Fungicid
             R.id.rb_insekticid -> TipTretiranja.Insekticid
             else -> TipTretiranja.Herbicid
         }
 
+        var karenca2: Long
         val vrsta = binding.etVrsta.text.toString()
         val kolicina = binding.etKolicina.text.toString()
-        val kolicina2 = Integer.parseInt(kolicina)
-      //  val datumtretiranja = binding.datum.getDate()
-        val datumtretiranja = pickTime1(a,b,e)
+        val datumtretiranja = pickTime1(a, b, e)
         val karenca = binding.etKarenca.text.toString()
-        val karenca2 = karenca.toLong()
+        if(karenca.isEmpty()) {
+             karenca2 = 0
+        }
+        else {
+             karenca2 = karenca.toLong()
+        }
+
+        if(kolicina.isEmpty()) {
+            greske = greske + "Molimo unesite kolicinu!"
+        }
+        else {
+
+            Integer.parseInt(kolicina)
+        }
+
+
+
         val kratkanapomena = binding.etNapomena.text.toString()
 
+        if (kratkanapomena.isEmpty()) {
+            greske = greske + "Napomena ne moze biti prazna!"
+        }
+        if( (karenca2 < 0 )){
+            greske = greske + "Karenca ne moze biti negativna!"
+        }
+
+        if(vrsta.isEmpty()){
+            greske = greske + "Unesite vrstu i proizvođača!"
+        }
 
 
-        tretiranjeRepository.save(Tretiranje(0,odabirVoca,tipTretiranja,vrsta,kolicina2,datumtretiranja,karenca2, kratkanapomena) )
 
 
-        Toast.makeText(context, getString(R.string.message_saving), Toast.LENGTH_SHORT).show()
-        val action = NovoTretiranjeFragmentDirections.actionNovoTretiranjeFragmentToTretiranjeLista()
-        findNavController().navigate(action)
+        if (greske.isEmpty()) {
+            tretiranjeRepository.save(
+                Tretiranje(
+                    0,
+                    odabirVoca,
+                    tipTretiranja,
+                    vrsta,
+                    Integer.parseInt(kolicina),
+                    datumtretiranja,
+                    karenca2,
+                    kratkanapomena
+                )
+            )
+            Toast.makeText(context, getString(R.string.message_saving), Toast.LENGTH_SHORT).show()
+            val action =
+                NovoTretiranjeFragmentDirections.actionNovoTretiranjeFragmentToTretiranjeLista()
+            findNavController().navigate(action)
+        }
 
+        else{
 
+            var errorstring = ""
+            greske.forEach {
+                errorstring = errorstring + it
+                errorstring = errorstring + "\n"
+
+            }
+            Toast.makeText(context, errorstring , Toast.LENGTH_SHORT).show()
+
+        }
     }
+
+
+
 
 
 
