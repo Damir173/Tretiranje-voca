@@ -1,5 +1,6 @@
 package hr.ferit.tretiranjevoca.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,8 @@ class JabukeActivity: Fragment(), OnTretiranjeEventListener {
     ): View {
 
         binding = FragmentJabukeBinding.inflate(layoutInflater)
+
+
         binding.tvUkupno.text = tretiranjeRepository.getJabuke().toString()
 
         if(tretiranjeRepository.getAktivneJabuke(System.currentTimeMillis()).compareTo(0) == 0){
@@ -68,6 +71,18 @@ class JabukeActivity: Fragment(), OnTretiranjeEventListener {
 
     private fun updateData() {
         adapter.setTretiranja(tretiranjeRepository.getAllJabuke())
+        binding.tvUkupno.text = tretiranjeRepository.getJabuke().toString()
+
+        if(tretiranjeRepository.getAktivneJabuke(System.currentTimeMillis()).compareTo(0) == 0){
+            binding.tvAktivno.text = "Nema"
+        }
+        else {
+            binding.tvAktivno.text = tretiranjeRepository.getAktivneJabuke(System.currentTimeMillis()).toString()
+        }
+
+        binding.tvFungicid.text = tretiranjeRepository.getJabukeFungicid().toString()
+        binding.tvHerbicid.text = tretiranjeRepository.getJabukeHerbicid().toString()
+        binding.tvInsekticid.text = tretiranjeRepository.getJabukeInsekticid().toString()
     }
 
     companion object {
@@ -85,9 +100,24 @@ class JabukeActivity: Fragment(), OnTretiranjeEventListener {
     }
 
     override fun onItemPress(tretiranje: Tretiranje?): Boolean {
-        tretiranje?.let { it ->
-            tretiranjeRepository.delete(it)
-        }
+
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("Jeste li sigurni da želite obrisati tretiranje?")
+            .setCancelable(false)
+            .setPositiveButton("Da") { dialog, id ->
+                tretiranje?.let { it ->
+                    tretiranjeRepository.delete(it)
+                    adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+                    updateData()
+                }
+            }
+            .setNegativeButton("Ne") { dialog, id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+
+
         return true
     }
 

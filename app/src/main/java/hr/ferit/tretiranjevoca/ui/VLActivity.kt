@@ -1,5 +1,6 @@
 package hr.ferit.tretiranjevoca.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +68,17 @@ class VLActivity: Fragment(), OnTretiranjeEventListener {
 
     private fun updateData() {
         adapter.setTretiranja(tretiranjeRepository.getAllVinova())
+        binding.tvUkupno.text = tretiranjeRepository.getVinovaLoza().toString()
+
+        if(tretiranjeRepository.getAktivneVinova(System.currentTimeMillis()).compareTo(0) == 0){
+            binding.tvAktivno.text = "Nema"
+        }
+        else {
+            binding.tvAktivno.text = tretiranjeRepository.getAktivneVinova(System.currentTimeMillis()).toString()
+        }
+        binding.tvFungicid.text = tretiranjeRepository.getVinovaFungicid().toString()
+        binding.tvHerbicid.text = tretiranjeRepository.getVinovaHerbicid().toString()
+        binding.tvInsekticid.text = tretiranjeRepository.getVinovaInsekticid().toString()
     }
 
     companion object {
@@ -84,11 +96,25 @@ class VLActivity: Fragment(), OnTretiranjeEventListener {
     }
 
     override fun onItemPress(tretiranje: Tretiranje?): Boolean {
-        tretiranje?.let { it ->
-            tretiranjeRepository.delete(it)
-        }
+
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("Jeste li sigurni da želite obrisati tretiranje?")
+            .setCancelable(false)
+            .setPositiveButton("Da") { dialog, id ->
+                tretiranje?.let { it ->
+                    tretiranjeRepository.delete(it)
+                    adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+                    updateData()
+                }
+            }
+            .setNegativeButton("Ne") { dialog, id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+
+
         return true
     }
-
 
 }

@@ -1,5 +1,6 @@
 package hr.ferit.tretiranjevoca.ui.tretiranje_lista
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -50,7 +51,6 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         binding.buttonPrijelaz3.setOnClickListener {showJabukeFragment()}
         binding.buttonPrijelaz4.setOnClickListener { showKruskeFragment() }
         binding.textView.text = tretiranjeRepository.getNumber().toString()
-    //    binding.view.isClickable = false
 
 
         if(tretiranjeRepository.getLastJabuka().compareTo(0) == 0) {
@@ -60,9 +60,28 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
             binding.textView17.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastJabuka()))
         }
 
-        binding.textView8.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastSljive()))
-        binding.tvVinovaLozaLast.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastVinovaLoza()))
-        binding.tvKruskaLast.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastKruska()))
+
+        if(tretiranjeRepository.getLastSljive().compareTo(0) == 0) {
+            binding.textView16.text = "/"
+        }
+        else {
+            binding.textView16.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastSljive()))
+        }
+
+        if(tretiranjeRepository.getLastVinovaLoza().compareTo(0) == 0) {
+            binding.tvVinovaLozaLast.text = "/"
+        }
+        else {
+            binding.tvVinovaLozaLast.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastVinovaLoza()))
+        }
+
+        if(tretiranjeRepository.getLastKruska().compareTo(0) == 0) {
+            binding.tvKruskaLast.text = "/"
+        }
+        else {
+            binding.tvKruskaLast.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastKruska()))
+        }
+
 
 
         val fadeIn = AnimationUtils.loadAnimation(context, R.anim.slideright)
@@ -101,6 +120,11 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         binding.tvKruskaLast.startAnimation(fadeIn)
         binding.tvVinovaLozaLast.startAnimation(fadeIn)
         binding.statistikatv3.startAnimation(anim2)
+
+        binding.textView16.startAnimation(fadeIn)
+        binding.textView17.startAnimation(fadeIn)
+        binding.tvKruskaLast.startAnimation(fadeIn)
+        binding.tvVinovaLozaLast.startAnimation(fadeIn)
         //endregion
 
         binding.textView6.text = tretiranjeRepository.getSljive().toString()
@@ -114,6 +138,8 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
         return binding.root
     }
+
+
 
     private fun setupRecyclerView() {
         binding.rvTretiranje.layoutManager = LinearLayoutManager(
@@ -135,6 +161,39 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
     private fun updateData() {
         adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+        if(tretiranjeRepository.getLastJabuka().compareTo(0) == 0) {
+            binding.textView17.text = "/"
+        }
+        else {
+            binding.textView17.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastJabuka()))
+        }
+
+
+        if(tretiranjeRepository.getLastSljive().compareTo(0) == 0) {
+            binding.textView16.text = "/"
+        }
+        else {
+            binding.textView16.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastSljive()))
+        }
+
+        if(tretiranjeRepository.getLastVinovaLoza().compareTo(0) == 0) {
+            binding.tvVinovaLozaLast.text = "/"
+        }
+        else {
+            binding.tvVinovaLozaLast.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastVinovaLoza()))
+        }
+
+        if(tretiranjeRepository.getLastKruska().compareTo(0) == 0) {
+            binding.tvKruskaLast.text = "/"
+        }
+        else {
+            binding.tvKruskaLast.text = dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastKruska()))
+        }
+
+        binding.textView6.text = tretiranjeRepository.getSljive().toString()
+        binding.textView9.text = tretiranjeRepository.getJabuke().toString()
+        binding.tvKruskaUkupno.text = tretiranjeRepository.getKruske().toString()
+        binding.tvVinovaLozaUkupno.text = tretiranjeRepository.getVinovaLoza().toString()
     }
 
 
@@ -153,10 +212,24 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
     }
 
     override fun onItemPress(tretiranje: Tretiranje?): Boolean {
-        tretiranje?.let { it ->
-            tretiranjeRepository.delete(it)
-            adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
-        }
+
+        val builder = AlertDialog.Builder(context)
+        builder.setMessage("Jeste li sigurni da želite obrisati tretiranje?")
+            .setCancelable(false)
+            .setPositiveButton("Da") { dialog, id ->
+                tretiranje?.let { it ->
+                    tretiranjeRepository.delete(it)
+                    adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+                    updateData();
+
+                }
+            }
+            .setNegativeButton("Ne") { dialog, id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+
         return true
     }
 
