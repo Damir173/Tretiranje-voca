@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Damir</string>
-    <string name="message_saving">Saving task</string>
-    <string name="label_save_task">Save task</string>
-    <string name="hint_task_content_input">Enter task contents</string>
+    <string name="message_saving">Dodano je novo tretiranje!</string>
     <string name="label_sljive">Sljive</string>
     <string name="label_jabuke">Jabuke</string>
     <string name="label_kruske">Kruske</string>

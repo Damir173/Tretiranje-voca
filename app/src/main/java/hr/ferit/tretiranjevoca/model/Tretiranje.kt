@@ -1,5 +1,6 @@
 package hr.ferit.tretiranjevoca.model
 
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -22,7 +23,10 @@ data class Tretiranje(
     @ColumnInfo(name = "karenca")
     val karenca: Long,
     @ColumnInfo(name = "napomena")
-    val napomena: String
-) {
+    val napomena: String,
+    @ColumnInfo(name = "photo")
+    val photo: Bitmap
+
+    ) {
 
 }

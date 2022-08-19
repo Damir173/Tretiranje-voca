@@ -1,8 +1,11 @@
 package hr.ferit.tretiranjevoca.data.room
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import hr.ferit.tretiranjevoca.model.OdabirVoca
 import hr.ferit.tretiranjevoca.model.TipTretiranja
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 class TretiranjeConverteri {
@@ -53,5 +56,16 @@ class TretiranjeConverteri {
     }
 
 
+    @TypeConverter
+    fun fromBitmap(bitmap: Bitmap): ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        return outputStream.toByteArray()
+    }
+
+    @TypeConverter
+    fun toBitmap(byteArray: ByteArray): Bitmap {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
 
 }

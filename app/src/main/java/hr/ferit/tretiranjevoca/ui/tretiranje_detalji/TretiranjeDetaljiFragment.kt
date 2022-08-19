@@ -24,6 +24,7 @@ class TretiranjeDetaljiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTretiranjeDetaljiBinding.inflate(layoutInflater)
+;
         return binding.root
     }
 
@@ -36,7 +37,7 @@ class TretiranjeDetaljiFragment : Fragment() {
     private fun display(tretiranje: Tretiranje?) {
         tretiranje?.let {
             binding.apply {
-
+            binding.ivDetalj.setImageBitmap(tretiranje.photo)
             }
         }
     }

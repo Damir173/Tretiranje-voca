@@ -1,25 +1,36 @@
 package hr.ferit.tretiranjevoca.ui.tretiranje_novo
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.room.TypeConverter
 import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.databinding.FragmentNovoTretiranjeBinding
 import hr.ferit.tretiranjevoca.di.TretiranjeRepositoryFactory
 import hr.ferit.tretiranjevoca.model.OdabirVoca
 import hr.ferit.tretiranjevoca.model.Tretiranje
 import hr.ferit.tretiranjevoca.model.TipTretiranja
+import java.io.ByteArrayOutputStream
 import java.util.*
-
+@Suppress("DEPRECATION")
 class NovoTretiranjeFragment : Fragment() {
 
     private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
     lateinit var binding: FragmentNovoTretiranjeBinding
+    private lateinit var imageBitmap: Bitmap
 
 
     val c: Calendar = Calendar.getInstance()
@@ -30,6 +41,7 @@ class NovoTretiranjeFragment : Fragment() {
     var a: Int = c.get(Calendar.YEAR)
     var b: Int = c.get(Calendar.MONTH)
     var e: Int = c.get(Calendar.DAY_OF_MONTH)
+
 
 
 
@@ -57,9 +69,44 @@ class NovoTretiranjeFragment : Fragment() {
         binding.rgOdabirvoca.check(R.id.rb_sljive)
         binding.rgTiptretiranja.check(R.id.rb_herbicid)
 
+
+        // camera
+
+        binding.ivTretiranje.setOnClickListener { addTretiranjePhoto() }
+        getDefaultProductImageFromResources()
         return binding.root
     }
 
+    private fun getDefaultProductImageFromResources() {
+        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.kruska) as Bitmap
+    }
+
+
+    private fun addTretiranjePhoto() {
+        dispatchTakePictureIntent()
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        try {
+            startActivityForResult(takePictureIntent, 1)
+        } catch (e: ActivityNotFoundException) {
+        }
+    }
+
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            imageBitmap = data?.extras?.get("data") as Bitmap
+            setImageToImageView()
+        }
+    }
+
+    private fun setImageToImageView() {
+        binding.ivTretiranje.setImageBitmap(imageBitmap)
+        binding.ivTretiranje.setBackgroundColor(Color.TRANSPARENT)
+    }
 
     private fun pickTime1(y: Int,m: Int,d: Int): Date{
 
@@ -130,7 +177,6 @@ class NovoTretiranjeFragment : Fragment() {
 
 
 
-
         if (greske.isEmpty()) {
             tretiranjeRepository.save(
                 Tretiranje(
@@ -141,7 +187,8 @@ class NovoTretiranjeFragment : Fragment() {
                     Integer.parseInt(kolicina),
                     datumtretiranja,
                     karenca2,
-                    kratkanapomena
+                    kratkanapomena,
+                    imageBitmap
                 )
             )
             Toast.makeText(context, getString(R.string.message_saving), Toast.LENGTH_SHORT).show()
@@ -150,8 +197,7 @@ class NovoTretiranjeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        else{
-
+        else {
             var errorstring = ""
             greske.forEach {
                 errorstring = errorstring + it
@@ -168,10 +214,27 @@ class NovoTretiranjeFragment : Fragment() {
 
 
 
+
     companion object {
 
         fun create(): Fragment {
             return NovoTretiranjeFragment()
         }
+
     }
+
+
+
+    @TypeConverter
+    fun fromBitmap(bitmap: Bitmap): ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        return outputStream.toByteArray()
+    }
+
+    @TypeConverter
+    fun toBitmap(byteArray: ByteArray): Bitmap {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
+
 }

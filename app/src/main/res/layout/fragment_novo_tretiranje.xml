@@ -17,7 +17,6 @@
         android:id="@+id/rg_odabirvoca"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
         android:buttonTintMode="multiply"
         android:gravity="center"
 
@@ -30,6 +29,7 @@
             android:id="@+id/rb_sljive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:buttonTintMode="multiply"
             android:text="@string/label_sljive" />
 
@@ -197,13 +197,26 @@
             android:hint="@string/label_napomena" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <Button
         android:id="@+id/b_save_tret"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Dodaj"
+        app:layout_constraintTop_toBottomOf="@+id/ivTretiranje"
+        tools:layout_editor_absoluteX="-26dp" />
+
+    <ImageView
+        android:id="@+id/ivTretiranje"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:background="@drawable/cameraicon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/napomena" />
+        app:layout_constraintTop_toBottomOf="@+id/napomena" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

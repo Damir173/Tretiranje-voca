@@ -22,8 +22,6 @@ interface TretiranjeDao {
 
 
 
-
-
     @Query("SELECT COUNT(id) from tretiranja")
     fun getNumber(): Int
 
