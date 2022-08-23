@@ -21,7 +21,7 @@ abstract class TretiranjeBaza : RoomDatabase() {
 
     companion object {
 
-        private const val databaseName = "notesDb"
+        private const val databaseName = "tretiranjeBaza"
 
         @Volatile
         private var INSTANCE: TretiranjeBaza? = null

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:buttonTintMode="multiply"
         android:gravity="center"
-
+    android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/rg_tiptretiranja"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,6 @@
             android:id="@+id/rb_sljive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:buttonTintMode="multiply"
             android:text="@string/label_sljive" />
 

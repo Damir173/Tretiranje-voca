@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Damir</string>
+    <string name="app_name">Tretiranje voća</string>
     <string name="message_saving">Dodano je novo tretiranje!</string>
     <string name="label_sljive">Sljive</string>
     <string name="label_jabuke">Jabuke</string>
@@ -37,6 +37,7 @@
     <string name="label_DetTipProizvodac"><b>Tip, proizvođač:</b></string>
     <string name="label_DetKolicina"><b>Količina [g/100l]:</b></string>
     <string name="label_DetKarenca"><b>Karenca [dani]:</b></string>
+
 
 
 </resources>

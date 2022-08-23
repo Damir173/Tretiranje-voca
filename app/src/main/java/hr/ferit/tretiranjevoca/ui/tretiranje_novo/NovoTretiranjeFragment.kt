@@ -1,9 +1,10 @@
 package hr.ferit.tretiranjevoca.ui.tretiranje_novo
 
-import android.app.Activity
-import android.app.DatePickerDialog
+import android.app.*
 import android.content.ActivityNotFoundException
+
 import android.content.Intent
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -17,16 +18,24 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.room.TypeConverter
-import hr.ferit.tretiranjevoca.R
+import hr.ferit.tretiranjevoca.*
+import hr.ferit.tretiranjevoca.data.*
 import hr.ferit.tretiranjevoca.databinding.FragmentNovoTretiranjeBinding
 import hr.ferit.tretiranjevoca.di.TretiranjeRepositoryFactory
 import hr.ferit.tretiranjevoca.model.OdabirVoca
 import hr.ferit.tretiranjevoca.model.Tretiranje
 import hr.ferit.tretiranjevoca.model.TipTretiranja
-import java.io.ByteArrayOutputStream
+
 import java.util.*
 @Suppress("DEPRECATION")
+
+
+
+
+
 class NovoTretiranjeFragment : Fragment() {
+
+
 
     private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
     lateinit var binding: FragmentNovoTretiranjeBinding
@@ -50,8 +59,9 @@ class NovoTretiranjeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         binding = FragmentNovoTretiranjeBinding.inflate(layoutInflater)
-        binding.bSaveTret.setOnClickListener{saveTretiranje()}
 
         binding.etKolicina2.setOnClickListener {
             DatePickerDialog(requireContext(), 0, (DatePickerDialog.OnDateSetListener {
@@ -70,10 +80,14 @@ class NovoTretiranjeFragment : Fragment() {
         binding.rgTiptretiranja.check(R.id.rb_herbicid)
 
 
-        // camera
+
 
         binding.ivTretiranje.setOnClickListener { addTretiranjePhoto() }
         getDefaultProductImageFromResources()
+
+
+        binding.bSaveTret.setOnClickListener{saveTretiranje();   }
+
         return binding.root
     }
 
@@ -213,28 +227,20 @@ class NovoTretiranjeFragment : Fragment() {
 
 
 
-
-
     companion object {
 
         fun create(): Fragment {
             return NovoTretiranjeFragment()
         }
-
     }
 
 
 
-    @TypeConverter
-    fun fromBitmap(bitmap: Bitmap): ByteArray {
-        val outputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        return outputStream.toByteArray()
-    }
-
-    @TypeConverter
-    fun toBitmap(byteArray: ByteArray): Bitmap {
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-    }
 
 }
+
+
+
+
+
+
