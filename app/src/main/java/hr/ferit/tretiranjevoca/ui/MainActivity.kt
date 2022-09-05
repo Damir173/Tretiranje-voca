@@ -31,11 +31,11 @@ class MainActivity : AppCompatActivity() {
     {
         val intent = Intent(applicationContext, Notification::class.java)
         val title =getString(R.string.notificationTitleString)
-        val message = "Ukupno tretiranja: " + tretiranjeRepository.getNumber().toString() +
-                     "\n[SLJIVE]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
-                     "\n[VINOVA LOZA]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
-                     "\n[JABUKE]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
-                     "\n[KRUSKE]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString()
+        val message = "Ukupno tretiranja (sve kulture): " + tretiranjeRepository.getNumber().toString() +
+                     "\nTretiranja šljiva: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
+                     "\nTretiranja jabuka: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
+                     "\nTretiranja vinove loze: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
+                     "\nTretiranja kruške " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString()
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 
@@ -49,14 +49,15 @@ class MainActivity : AppCompatActivity() {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 7)
-            set(Calendar.MINUTE, 43)
+            set(Calendar.HOUR_OF_DAY, 8)
+            set(Calendar.MINUTE, 0)
         }
 
+        // test - 180 min
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
-            1000 * 60 * 1,
+            1000 * 60 * 180,
             pendingIntent
         )
     }

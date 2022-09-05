@@ -20,14 +20,14 @@ class Notification : BroadcastReceiver()
     override fun onReceive(context: Context, intent: Intent)
     {
 
-        val notification = NotificationCompat.Builder(context, channelID)
-           .setSmallIcon(hr.ferit.tretiranjevoca.R.drawable.fruitsicon)
+
+        var notification = NotificationCompat.Builder(context, channelID)
+            .setSmallIcon(R.drawable.fruitsicon)
             .setContentTitle(intent.getStringExtra(titleExtra))
             .setContentText(intent.getStringExtra(messageExtra))
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText(intent.getStringExtra(messageExtra)))
             .build()
-
-
-
 
 
         val  manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
