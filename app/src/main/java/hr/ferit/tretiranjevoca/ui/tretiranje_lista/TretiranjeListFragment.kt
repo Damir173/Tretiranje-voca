@@ -54,13 +54,16 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
         binding = FragmentTretiranjeListaBinding.inflate(layoutInflater)
         setupRecyclerView()
+
+        //region OnClickListeneri za buttone
         binding.fabAddNote.setOnClickListener { showCreateNewTretFragment() }
         binding.buttonPrijelaz.setOnClickListener { showSljiveFragment() }
         binding.buttonPrijelaz2.setOnClickListener { showVLFragment() }
         binding.buttonPrijelaz3.setOnClickListener { showJabukeFragment() }
         binding.buttonPrijelaz4.setOnClickListener { showKruskeFragment() }
+        //endregion
 
-
+        //region Provjere ima li postojećih tretiranja
         if (tretiranjeRepository.getLastJabuka().compareTo(0) == 0) {
             binding.textView17.text = "/"
         } else {
@@ -90,7 +93,10 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
                 dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastKruska()))
         }
 
+        //endregion
 
+
+        //region Animacije setup
         val fadeIn = AnimationUtils.loadAnimation(context, R.anim.slideright)
         val anim2 = AnimationUtils.loadAnimation(context, R.anim.slideleftg)
 
@@ -100,6 +106,8 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         binding.statistikatv.startAnimation(fadeIn)
         binding.rvTretiranje.startAnimation(anim2)
         binding.statistikatv2.startAnimation(anim2)
+
+        //endregion
 
         //region Animacije za statistiku
         binding.imageView2.startAnimation(fadeIn)
@@ -132,24 +140,20 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         //endregion
 
 
-
+        //region Ukupan broj tretiranja postavljanje
         binding.textView6.text = tretiranjeRepository.getSljive().toString()
         binding.textView9.text = tretiranjeRepository.getJabuke().toString()
         binding.tvKruskaUkupno.text = tretiranjeRepository.getKruske().toString()
         binding.tvVinovaLozaUkupno.text = tretiranjeRepository.getVinovaLoza().toString()
+        //endregion
 
-
+        //region Estetika
         binding.statistikatv3.text =
             "(" + tretiranjeRepository.getAktivneKarence(System.currentTimeMillis())
                 .toString() + ")"
-
-
-
+        //endregion
 
         return binding.root
-
-
-
     }
 
 
@@ -174,6 +178,8 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
     private fun updateData() {
         adapter.setTretiranja(tretiranjeRepository.getAllTretiranja(System.currentTimeMillis()))
+
+        //region Provjera ima li postojećih tretiranja (update)
         if (tretiranjeRepository.getLastJabuka().compareTo(0) == 0) {
             binding.textView17.text = "/"
         } else {
@@ -203,10 +209,14 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
                 dateDisplayFormat.format(fromTimestamp(tretiranjeRepository.getLastKruska()))
         }
 
+        //endregion
+
+        //region Postavljanje ukupnog broja tretiranja (update)
         binding.textView6.text = tretiranjeRepository.getSljive().toString()
         binding.textView9.text = tretiranjeRepository.getJabuke().toString()
         binding.tvKruskaUkupno.text = tretiranjeRepository.getKruske().toString()
         binding.tvVinovaLozaUkupno.text = tretiranjeRepository.getVinovaLoza().toString()
+        //endregion
     }
 
 
@@ -228,7 +238,7 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
     override fun onItemPress(tretiranje: Tretiranje?): Boolean {
 
         val builder = AlertDialog.Builder(context)
-        builder.setMessage("Jeste li sigurni da želite obrisati tretiranje?")
+        builder.setMessage(getString(R.string.brisanjeProvjera))
             .setCancelable(false)
             .setPositiveButton("Da") { dialog, id ->
                 tretiranje?.let { it ->
@@ -247,6 +257,7 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         return true
     }
 
+    //region showXXXFragments
     private fun showCreateNewTretFragment() {
         val action =
             TretiranjeListFragmentDirections.actionTretiranjeListFragmentToNovoTretiranjeFragment()
@@ -272,7 +283,7 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         val action = TretiranjeListFragmentDirections.actionTretiranjeListFragmentToKruskeActivity()
         findNavController().navigate(action)
     }
-
+//endregion
 
 
 

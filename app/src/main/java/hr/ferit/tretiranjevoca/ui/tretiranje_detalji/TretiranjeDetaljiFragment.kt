@@ -23,8 +23,7 @@ class TretiranjeDetaljiFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTretiranjeDetaljiBinding.inflate(layoutInflater)
-;
+        binding = FragmentTretiranjeDetaljiBinding.inflate(layoutInflater);
         return binding.root
     }
 
@@ -51,8 +50,6 @@ class TretiranjeDetaljiFragment : Fragment() {
     }
 
     companion object {
-
-
         fun create(id: Long): Fragment {
             val fragment = TretiranjeDetaljiFragment()
             return fragment

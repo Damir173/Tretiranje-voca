@@ -16,11 +16,8 @@ interface TretiranjeDao {
     @Query("SELECT * FROM tretiranja WHERE id =:id")
     fun getTretId(id: Long): Tretiranje?
 
-
     @Query("SELECT * FROM tretiranja WHERE (datumtretiranja + (karenca*86400000) )>:datum")
     fun getAllTretiranja(datum: Long): List<Tretiranje>
-
-
 
     @Query("SELECT COUNT(id) from tretiranja")
     fun getNumber(): Int
@@ -43,7 +40,6 @@ interface TretiranjeDao {
     fun getAktivneKarence(datum: Long): Int
     //endregion
 
-
     // region Dohvaćanje zadnjeg tretiranja pojedinih kultura
     @Query("SELECT MAX(datumtretiranja) from tretiranja WHERE odabirvoca ='Sljive'")
     fun getLastSljive(): Long
@@ -57,6 +53,7 @@ interface TretiranjeDao {
 
     //endregion
 
+    //region Dohvaćanje liste tretiranja za određene kulture
     @Query("SELECT * FROM tretiranja WHERE odabirvoca='Sljive'")
     fun getAllSljive(): List<Tretiranje>
     @Query("SELECT * FROM tretiranja WHERE odabirvoca='VinovaLoza'")
@@ -65,7 +62,7 @@ interface TretiranjeDao {
     fun getAllJabuke(): List<Tretiranje>
     @Query("SELECT * FROM tretiranja WHERE odabirvoca='Kruske'")
     fun getAllKruske(): List<Tretiranje>
-
+//endregion
 
     // region Dohvacanje broja aktivnih karenca pojedinih kultura
 
@@ -79,7 +76,6 @@ interface TretiranjeDao {
     fun getAktivneVinova(datum: Long): Int
     //endregion
 
-
     //region Dohvaćanje tretiranja fungicidom pojedinih kultura
 
     @Query("SELECT COUNT(id) from tretiranja WHERE odabirvoca='Sljive' AND  tiptretiranja='Fungicid' ")
@@ -92,6 +88,7 @@ interface TretiranjeDao {
     fun getVinovaFungicid(): Int
 
     //endregion
+
     //region Dohvaćanje tretiranja herbicidom pojedinih kultura
 
     @Query("SELECT COUNT(id) from tretiranja WHERE odabirvoca='Sljive' AND  tiptretiranja='Herbicid' ")
@@ -104,6 +101,7 @@ interface TretiranjeDao {
     fun getVinovaHerbicid(): Int
 
     //endregion
+
     //region Dohvaćanje tretiranja insekticidom pojedinih kultura
 
     @Query("SELECT COUNT(id) from tretiranja WHERE odabirvoca='Sljive' AND  tiptretiranja='Insekticid' ")

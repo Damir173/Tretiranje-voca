@@ -47,20 +47,10 @@ class TretiranjeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(tretiranje: Tretiranje) {
         val binding = ItemTretiranjeBinding.bind(itemView)
-      //  binding.itemTaskTitle.text = task.napomena
-       // binding.itemTaskContent.text = task.karenca.toString()
-        //binding.itemTaskContent2.text = dateDisplayFormat.format(task.datumtretiranja)
         binding.imageView7.setBackgroundResource(
             binding.imageView7.context.resources.odabirSlikeVoca(tretiranje.odabirVoca)
         )
-
         binding.textView20.text = dateDisplayFormat.format(fromTimestamp(toTimestamp(tretiranje.datumtretiranja)?.plus((tretiranje.karenca*86400000))))
-
-        //val a = toTimestamp(task.datumtretiranja)?.plus((task.karenca*86400000))
-       // binding.itemTaskContent3.text = dateDisplayFormat.format(fromTimestamp(a))
-
-
-
     }
 }
 

@@ -38,6 +38,7 @@
     <string name="label_DetKolicina"><b>Količina [g/100l]:</b></string>
     <string name="label_DetKarenca"><b>Karenca [dani]:</b></string>
     <string name="notificationTitleString">Aplikacija za praćenje tretiranja voća</string>
+    <string name="brisanjeProvjera">Jeste li sigurni da želite obrisati tretiranje?</string>
 
 
 </resources>
