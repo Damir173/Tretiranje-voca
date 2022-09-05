@@ -36,15 +36,22 @@ class TretiranjeDetaljiFragment : Fragment() {
 
     private fun display(tretiranje: Tretiranje?) {
         tretiranje?.let {
+             val dateDisplayFormat = SimpleDateFormat("dd.MM.yyyy")
+
             binding.apply {
             binding.ivDetalj.setImageBitmap(tretiranje.photo)
+                binding.tvItemDatum.text = dateDisplayFormat.format(tretiranje.datumtretiranja)
+                binding.tvItemKarenca.text = tretiranje.karenca.toString()
+                binding.tvItemKolicina.text = tretiranje.kolicina.toString()
+                binding.tvItemTip.text = tretiranje.vrsta.toString()
+                binding.tvItemVrsta.text = tretiranje.tipTretiranja.toString()
+                binding.tvNapomena.text = tretiranje.napomena.toString()
             }
         }
     }
 
     companion object {
-        val Tag = "TasksDetails"
-        val TaskIdKey = "TaskId"
+
 
         fun create(id: Long): Fragment {
             val fragment = TretiranjeDetaljiFragment()

@@ -48,7 +48,7 @@ class TretiranjeViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) 
         binding.tvItemKarenca.text = tretiranje.karenca.toString()
         binding.tvItemKolicina.text = tretiranje.kolicina.toString()
         binding.tvItemTip.text = tretiranje.vrsta.toString()
-        binding.tvItemVrsta.text = tretiranje.vrsta.toString()
+        binding.tvItemVrsta.text = tretiranje.tipTretiranja.toString()
 
     }
 }

@@ -59,7 +59,6 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
         binding.buttonPrijelaz2.setOnClickListener { showVLFragment() }
         binding.buttonPrijelaz3.setOnClickListener { showJabukeFragment() }
         binding.buttonPrijelaz4.setOnClickListener { showKruskeFragment() }
-        binding.textView.text = tretiranjeRepository.getNumber().toString()
 
 
         if (tretiranjeRepository.getLastJabuka().compareTo(0) == 0) {

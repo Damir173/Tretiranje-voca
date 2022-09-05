@@ -92,7 +92,7 @@ class NovoTretiranjeFragment : Fragment() {
     }
 
     private fun getDefaultProductImageFromResources() {
-        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.kruska) as Bitmap
+        imageBitmap = BitmapFactory.decodeResource(resources, R.drawable.noimageavailable) as Bitmap
     }
 
 

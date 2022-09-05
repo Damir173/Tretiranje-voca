@@ -6,7 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.databinding.ActivityMainBinding
+import hr.ferit.tretiranjevoca.di.TretiranjeRepositoryFactory
 
 import java.util.*
 
@@ -14,22 +16,26 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
    private lateinit var binding: ActivityMainBinding
+    private val tretiranjeRepository = TretiranjeRepositoryFactory.tretiranjeRepository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         createNotificationChannel()
-
         scheduleNotification()
-
     }
 
     private fun scheduleNotification()
     {
         val intent = Intent(applicationContext, Notification::class.java)
-        val title ="Naslov"
-        val message = "Poruka"
+        val title =getString(R.string.notificationTitleString)
+        val message = "Ukupno tretiranja: " + tretiranjeRepository.getNumber().toString() +
+                     "\n[SLJIVE]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
+                     "\n[VINOVA LOZA]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
+                     "\n[JABUKE]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
+                     "\n[KRUSKE]: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString()
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 
@@ -41,13 +47,18 @@ class MainActivity : AppCompatActivity() {
         )
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val time = getTime()
-        alarmManager.setExactAndAllowWhileIdle(
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 7)
+            set(Calendar.MINUTE, 43)
+        }
+
+        alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
-            time,
+            calendar.timeInMillis,
+            1000 * 60 * 1,
             pendingIntent
         )
-        showAlert(time, title, message)
     }
 
     private fun showAlert(time: Long, title: String, message: String)
@@ -66,20 +77,7 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun getTime(): Long
-    {
 
-        val mYear = 2022
-        val mMonth = 7
-        val mDay = 23
-
-        val minute = 2
-        val hour = 10
-
-        val calendar = Calendar.getInstance()
-        calendar.set(mYear, mMonth, mDay, hour, minute)
-        return calendar.timeInMillis
-    }
 
     private fun createNotificationChannel()
     {
