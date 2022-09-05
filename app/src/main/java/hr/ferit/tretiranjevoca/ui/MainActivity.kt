@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     {
         val intent = Intent(applicationContext, Notification::class.java)
         val title =getString(R.string.notificationTitleString)
-        val message = "Ukupno tretiranja (sve kulture): " + tretiranjeRepository.getNumber().toString() +
+        val message = getString(R.string.nfcukupno) + tretiranjeRepository.getNumber().toString() +
                      "\nTretiranja šljiva: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
                      "\nTretiranja jabuka: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
                      "\nTretiranja vinove loze: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
@@ -62,28 +62,14 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun showAlert(time: Long, title: String, message: String)
-    {
-        val date = Date(time)
-        val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
-        val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
 
-        AlertDialog.Builder(this)
-            .setTitle("Notification Scheduled")
-            .setMessage(
-                "Title: " + title +
-                        "\nMessage: " + message +
-                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
-            .setPositiveButton("Okay"){_,_ ->}
-            .show()
-    }
 
 
 
     private fun createNotificationChannel()
     {
-        val name = "Obavijesti o tretiranjima"
-        val desc = "Ovdje se nalaze obavijesti o tretiranjima"
+        val name = getString(R.string.nfcobavijest1)
+        val desc = getString(R.string.nfcdescription)
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(channelID, name, importance)
         channel.description = desc

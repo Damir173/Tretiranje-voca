@@ -39,6 +39,13 @@
     <string name="label_DetKarenca"><b>Karenca [dani]:</b></string>
     <string name="notificationTitleString">Aplikacija za praćenje tretiranja voća</string>
     <string name="brisanjeProvjera">Jeste li sigurni da želite obrisati tretiranje?</string>
+    <string name="greske_kolicina">Molimo unesite kolicinu!</string>
+    <string name="napomena_error">Napomena ne moze biti prazna!</string>
+    <string name="karenca_error">Karenca ne moze biti negative!</string>
+    <string name="vrsta_error">Unesite vrstu i proizvođača!</string>
+    <string name="nfcobavijest1">Obavijesti o tretiranjima</string>
+    <string name="nfcdescription">Ovdje se nalaze obavijesti o tretiranjima</string>
+    <string name="nfcukupno">\"Ukupno tretiranja (sve kulture): \"</string>
 
 
 </resources>

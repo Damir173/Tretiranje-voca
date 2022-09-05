@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import hr.ferit.tretiranjevoca.R
 import hr.ferit.tretiranjevoca.databinding.FragmentJabukeBinding
 import hr.ferit.tretiranjevoca.databinding.FragmentVlBinding
 
@@ -86,8 +87,6 @@ class JabukeActivity: Fragment(), OnTretiranjeEventListener {
     }
 
     companion object {
-        val Tag = "TasksList"
-
         fun create(): Fragment {
             return JabukeActivity()
         }
@@ -102,7 +101,7 @@ class JabukeActivity: Fragment(), OnTretiranjeEventListener {
     override fun onItemPress(tretiranje: Tretiranje?): Boolean {
 
         val builder = AlertDialog.Builder(context)
-        builder.setMessage("Jeste li sigurni da želite obrisati tretiranje?")
+        builder.setMessage(R.string.brisanjeProvjera)
             .setCancelable(false)
             .setPositiveButton("Da") { dialog, id ->
                 tretiranje?.let { it ->

@@ -42,6 +42,7 @@ class NovoTretiranjeFragment : Fragment() {
     private lateinit var imageBitmap: Bitmap
 
 
+    //region Inicijalizacija kalendara
     val c: Calendar = Calendar.getInstance()
     val mYear = c.get(Calendar.YEAR)
     val mMonth = c.get(Calendar.MONTH)
@@ -50,7 +51,7 @@ class NovoTretiranjeFragment : Fragment() {
     var a: Int = c.get(Calendar.YEAR)
     var b: Int = c.get(Calendar.MONTH)
     var e: Int = c.get(Calendar.DAY_OF_MONTH)
-
+    //endregion
 
 
 
@@ -73,14 +74,11 @@ class NovoTretiranjeFragment : Fragment() {
                     ), mYear, mMonth, mDay).show()
         }
 
-        var nula:String = "0"
-        binding.etKarenca.setText(nula)
+        val nula:String = "0"
 
+        binding.etKarenca.setText(nula)
         binding.rgOdabirvoca.check(R.id.rb_sljive)
         binding.rgTiptretiranja.check(R.id.rb_herbicid)
-
-
-
 
         binding.ivTretiranje.setOnClickListener { addTretiranjePhoto() }
         getDefaultProductImageFromResources()
@@ -159,6 +157,8 @@ class NovoTretiranjeFragment : Fragment() {
         val kolicina = binding.etKolicina.text.toString()
         val datumtretiranja = pickTime1(a, b, e)
         val karenca = binding.etKarenca.text.toString()
+
+        //region Validacija podataka, popunjavanje polja stringova
         if(karenca.isEmpty()) {
              karenca2 = 0
         }
@@ -167,7 +167,7 @@ class NovoTretiranjeFragment : Fragment() {
         }
 
         if(kolicina.isEmpty()) {
-            greske = greske + "Molimo unesite kolicinu!"
+            greske = greske + getString(R.string.greske_kolicina)
         }
         else {
 
@@ -179,17 +179,17 @@ class NovoTretiranjeFragment : Fragment() {
         val kratkanapomena = binding.etNapomena.text.toString()
 
         if (kratkanapomena.isEmpty()) {
-            greske = greske + "Napomena ne moze biti prazna!"
+            greske = greske + getString(R.string.napomena_error)
         }
         if( (karenca2 < 0 )){
-            greske = greske + "Karenca ne moze biti negativna!"
+            greske = greske + getString(R.string.karenca_error)
         }
 
         if(vrsta.isEmpty()){
-            greske = greske + "Unesite vrstu i proizvođača!"
+            greske = greske + getString(R.string.vrsta_error)
         }
 
-
+//endregion
 
         if (greske.isEmpty()) {
             tretiranjeRepository.save(
@@ -223,20 +223,11 @@ class NovoTretiranjeFragment : Fragment() {
         }
     }
 
-
-
-
-
     companion object {
-
         fun create(): Fragment {
             return NovoTretiranjeFragment()
         }
     }
-
-
-
-
 }
 
 
