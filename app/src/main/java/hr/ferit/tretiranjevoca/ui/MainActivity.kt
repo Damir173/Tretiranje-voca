@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                      "\nTretiranja šljiva: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
                      "\nTretiranja jabuka: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
                      "\nTretiranja vinove loze: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString() +
-                     "\nTretiranja kruške " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString()
+                     "\nTretiranja kruške: " + tretiranjeRepository.getAktivneSljive(System.currentTimeMillis()).toString()
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 

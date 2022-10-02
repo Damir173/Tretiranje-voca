@@ -95,7 +95,6 @@ class TretiranjeListFragment : Fragment(), OnTretiranjeEventListener {
 
         //endregion
 
-
         //region Animacije setup
         val fadeIn = AnimationUtils.loadAnimation(context, R.anim.slideright)
         val anim2 = AnimationUtils.loadAnimation(context, R.anim.slideleftg)

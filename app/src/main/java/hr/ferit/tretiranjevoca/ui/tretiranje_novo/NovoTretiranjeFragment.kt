@@ -134,8 +134,6 @@ class NovoTretiranjeFragment : Fragment() {
 
     private fun saveTretiranje() {
 
-
-
         var greske = arrayOf<String>()
         val odabirVoca = when (binding.rgOdabirvoca.checkedRadioButtonId) {
             R.id.rb_sljive -> OdabirVoca.Sljive
